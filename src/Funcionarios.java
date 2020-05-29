@@ -11,8 +11,8 @@ public class Funcionarios {
 		DecimalFormat df = new DecimalFormat("0.00");
 
 		String nome, digitarOutro;
-		int horasTrabalhadas, opcao;
-		double valorHora;
+		int horasTrabalhadas, opcao, somaHorasTrabalhadas = 0;
+		double valorHora, custoTotal = 0, somaValorHoras = 0;
 
 		// "Leitura dos dados"
 		do {
@@ -21,6 +21,12 @@ public class Funcionarios {
 			nome = sc.next();
 			System.out.print("Horas trabalhadas: ");
 			horasTrabalhadas = sc.nextInt();
+			
+			if(horasTrabalhadas > 0) {
+				somaHorasTrabalhadas += horasTrabalhadas;
+			}
+			
+			
 
 			while (horasTrabalhadas <= 0) {
 				System.out.println();
@@ -28,10 +34,20 @@ public class Funcionarios {
 				System.out.println();
 				System.out.print("Horas trabalhadas: ");
 				horasTrabalhadas = sc.nextInt();
+				
+				if(horasTrabalhadas > 0) {
+					somaHorasTrabalhadas += horasTrabalhadas;
+				}
+				
 			}
 
 			System.out.print("Valor por hora: ");
 			valorHora = sc.nextDouble();
+			
+			if(valorHora > 0) {
+				somaValorHoras += valorHora;
+				custoTotal = (horasTrabalhadas * somaValorHoras);
+			}
 
 			while (valorHora <= 0.00) {
 				System.out.println();
@@ -39,6 +55,11 @@ public class Funcionarios {
 				System.out.println();
 				System.out.print("Valor por hora: ");
 				valorHora = sc.nextDouble();
+				
+				if(valorHora > 0) {
+					somaValorHoras += valorHora;
+					custoTotal = (horasTrabalhadas * somaValorHoras);
+				}
 			}
 
 			System.out.print("Digitar outro (S/N)? ");
@@ -59,10 +80,25 @@ public class Funcionarios {
 		  System.out.print("Digite uma opção: ");
 		  opcao = sc.nextInt();
 		  
+		//"Tratativas 1 e 2"
+		  
+		   if(opcao == 1) {
+			   
+			   System.out.println();
+			   System.out.println("Total de horas = " + somaHorasTrabalhadas);
+			    
+		   }else if(opcao == 2) {
+			   
+			   System.out.println();
+			   System.out.println("Custo total = R$ " + df.format(custoTotal));
+		   }
+		  
 		  
 		}while(opcao != 4);
 		
 		
+		
+		  
 		
 	}
 
